@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5e17eb">
+  <title>Politique de confidentialité – Manage</title>
+  <link rel="icon" href="https://i.postimg.cc/W3xncCr9/Manage-1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #5e17eb;
+      --primary-light: #7c3aed;
+      --bg: #000;
+      --surface: #0a0a0f;
+      --text: #fff;
+      --text-muted: #8b8b8b;
+      --border: rgba(255,255,255,.06);
+    }
+
+    body {
+      font-family: Inter, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-gradient {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: .3;
+    }
+
+    .bg-gradient-1 {
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      top: -400px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .bg-gradient-2 {
+      background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+      bottom: -400px;
+      right: 20%;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 0 50px rgba(94, 23, 235, .6);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: .5rem;
+      letter-spacing: -1px;
+    }
+
+    .last-update {
+      color: var(--text-muted);
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    .content {
+      background: rgba(255, 255, 255, .02);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      backdrop-filter: blur(20px);
+      margin-bottom: 2rem;
+    }
+
+    .intro {
+      background: rgba(94, 23, 235, .08);
+      border: 1px solid rgba(94, 23, 235, .2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .intro i {
+      color: var(--primary);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: .2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    h2 i {
+      font-size: 1.3rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .highlight-box {
+      background: rgba(94, 23, 235, .05);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      color: var(--text);
+    }
+
+    ul {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    li {
+      padding: .75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--text-muted);
+    }
+
+    li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: .9rem;
+    }
+
+    .contact-box {
+      background: rgba(255, 255, 255, .02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon i {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .contact-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: .25rem;
+      color: var(--text);
+    }
+
+    .contact-content p {
+      margin: 0;
+      font-size: .9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: .9rem;
+    }
+
+    footer strong {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all .3s;
+    }
+
+    a:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-canvas">
+    <div class="bg-gradient bg-gradient-1"></div>
+    <div class="bg-gradient bg-gradient-2"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="https://i.postimg.cc/W3xncCr9/Manage-1.png" alt="Manage">
+      </div>
+      <h1>Politique de confidentialité</h1>
+      <p class="last-update">Dernière mise à jour : Décembre 2024</p>
+    </header>
+
+    <div class="content">
+      <div class="intro">
+        <i class="fas fa-shield-halved"></i>
+        <p>
+          Cette politique de confidentialité explique comment le bot Discord
+          <strong>Manage</strong> utilise les données au sein des serveurs Discord
+          où il est invité. Nous nous engageons à protéger votre vie privée et à être
+          transparents sur nos pratiques.
+        </p>
+      </div>
+
+      <h2><i class="fas fa-database"></i> Données collectées</h2>
+      <p>
+        Le bot Manage ne collecte <strong>aucune donnée personnelle sensible</strong>.
+        Les seules informations pouvant être utilisées sont :
+      </p>
+      <ul>
+        <li>Pseudonyme Discord des utilisateurs</li>
+        <li>Identifiant Discord (User ID)</li>
+        <li>Identifiant du serveur (Guild ID)</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>
+          <strong>⚠️ Important :</strong> Des transcripts de messages peuvent être enregistrés
+          uniquement à l'intérieur du serveur de support officiel du bot, et seulement en cas
+          de problème, de signalement ou de demande d'assistance.
+        </p>
+      </div>
+
+      <h2><i class="fas fa-cog"></i> Utilisation des données</h2>
+      <p>
+        Les données sont utilisées exclusivement pour :
+      </p>
+      <ul>
+        <li>Assurer le bon fonctionnement du bot</li>
+        <li>Résoudre des problèmes techniques</li>
+        <li>Répondre aux demandes de support</li>
+        <li>Améliorer les fonctionnalités du bot</li>
+      </ul>
+      <p>
+        <strong>Aucune donnée n'est utilisée à des fins commerciales ou publicitaires.</strong>
+      </p>
+
+      <h2><i class="fas fa-server"></i> Stockage des données</h2>
+      <p>
+        Le contenu des messages des serveurs <strong>n'est pas stocké en dehors de Discord</strong>.
+        Les données ne sont conservées que le temps nécessaire à la résolution du problème concerné,
+        puis sont automatiquement supprimées.
+      </p>
+
+      <h2><i class="fas fa-share-nodes"></i> Partage des données</h2>
+      <div class="highlight-box">
+        <p>
+          <strong>🔒 Garantie :</strong> Aucune donnée n'est vendue, partagée ou transmise à des tiers.
+          Vos informations restent strictement confidentielles.
+        </p>
+      </div>
+
+      <h2><i class="fas fa-user-shield"></i> Vos droits</h2>
+      <p>
+        Conformément au RGPD, vous disposez des droits suivants :
+      </p>
+      <ul>
+        <li>Droit d'accès à vos données personnelles</li>
+        <li>Droit de rectification de vos données</li>
+        <li>Droit à l'effacement de vos données</li>
+        <li>Droit d'opposition au traitement</li>
+      </ul>
+
+      <h2><i class="fas fa-check-circle"></i> Consentement</h2>
+      <p>
+        En ajoutant le bot Manage à un serveur Discord, les administrateurs et
+        utilisateurs acceptent cette politique de confidentialité. Vous pouvez
+        retirer ce consentement à tout moment en retirant le bot du serveur.
+      </p>
+
+      <h2><i class="fas fa-shield-alt"></i> Sécurité</h2>
+      <p>
+        Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos
+        données contre tout accès, modification, divulgation ou destruction non autorisés.
+      </p>
+
+      <h2><i class="fas fa-sync"></i> Modifications de la politique</h2>
+      <p>
+        Cette politique de confidentialité peut être mise à jour occasionnellement.
+        Les modifications importantes seront communiquées via le serveur de support officiel.
+      </p>
+
+      <div class="contact-box">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="contact-content">
+          <h3>Besoin d'aide ?</h3>
+          <p>
+            Pour toute question concernant cette politique de confidentialité,
+            contactez l'équipe via le <strong>serveur de support du bot</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 – Bot Discord <strong>Manage</strong></p>
+      <p>Tous droits réservés</p>
+    </footer>
+  </div>
+
+  <script>
+    console.log('%c🔒 Politique de confidentialité', 'color: #5e17eb; font-size: 20px; font-weight: bold;');
+    console.log('%c⚡ Manage Bot', 'color: #7c3aed; font-size: 14px;');
+  </script>
+</body>
+</html>
